@@ -1,0 +1,60 @@
+
+.register {
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	form {
+		width: 40%;
+	}
+
+	label {
+		&:not(.label) {
+			font-size: 20px;
+		}
+	}
+
+	p {
+		color:red;
+	}
+
+	input {
+		width: 100%;
+		padding: 7px;
+		border:1px solid gray;
+		border-radius:5px;
+		margin-bottom: 8px;
+	}
+
+	.control-group:last-child {
+		.controls {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			button {
+				padding: 10px;
+				min-width: 110px;
+			}
+		}
+	}
+}
+
+.label-wrap {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+
+	label {
+		margin-right: 10px;
+		font-size: 18px;
+		margin-bottom: 0;
+	}
+
+	input {
+		width: 15px;
+		height: 15px;
+		margin-bottom: 0;
+	}
+}

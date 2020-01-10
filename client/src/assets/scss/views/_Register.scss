@@ -1,0 +1,39 @@
+
+.register {
+		min-height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		form {
+			width: 40%;
+		}
+
+		label {
+			font-size: 20px;
+		}
+
+		p {
+			color:red;
+		}
+
+		input {
+			width: 100%;
+			padding: 7px;
+			border:1px solid gray;
+			border-radius:5px;
+			margin-bottom: 8px;
+		}
+
+		.control-group:last-child {
+			.controls {
+				display: flex;
+				justify-content: center;
+
+				button {
+					padding: 10px;
+					min-width: 110px;
+				}
+			}
+		}
+}

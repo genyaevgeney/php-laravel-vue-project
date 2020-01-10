@@ -1,0 +1,19 @@
+a {
+	&:hover {
+		text-decoration: none;
+		opacity: .7;
+	}
+}
+
+input,
+select,
+button,
+textarea {
+	&:focus {
+		outline: none;
+	}
+}
+
+textarea {
+	resize: none;
+	}
