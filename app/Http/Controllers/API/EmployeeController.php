@@ -17,22 +17,12 @@ class EmployeeController extends Controller
         $this->employeeService = $employeeService;
         $this->middleware('auth:api');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(CreateEmployee $request)
     {
         $validated = $request->validated();
@@ -40,24 +30,11 @@ class EmployeeController extends Controller
         return $this->employeeService->create($validated);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         return $this->employeeService->paginate();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(CreateEmployee $request, $id)
     {
         $validated = $request->validated();
@@ -66,12 +43,6 @@ class EmployeeController extends Controller
         return 'Employee has been updated succesfully';
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $this->employeeService->delete($id);

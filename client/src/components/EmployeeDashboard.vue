@@ -2,19 +2,19 @@
   <div>
     <div class="main-block">
       <p class="page-name">
-        Dashboard
+        {{ $t('DashboardWord') }}
       </p>
       <div class="main-section">
         <button id="show-modal" @click="showModal = true" class="create-btn">
-          Create new employee
+          {{ $t('CreateEmployeeBtn') }}
         </button>
         <Modal v-if="showModal" @close="closeModal">
-          <h3 slot="header">Employee</h3>
+          <h3 slot="header">{{ $t('EmployeeTrl') }}</h3>
           <div slot="body" class="create-div">
-            <label for="name" class="label">Name:</label>
+            <label for="name" class="label">{{ $t('NameTrl') }}:</label>
             <input v-model="info.name" type="text" id="name" class="input" />
             <p v-if="errors.name" class="help-block">{{ errors.name }}</p>
-            <label for="address" class="label">Address:</label>
+            <label for="address" class="label">{{ $t('AddressTrl') }}:</label>
             <input
               v-model="info.address"
               type="text"
@@ -22,21 +22,21 @@
               class="input"
             />
             <p v-if="errors.address" class="help-block">{{ errors.address }}</p>
-            <label for="companyName" class="label">Company name:</label>
+            <label for="companyName" class="label">{{ $t('CompanyNameTrl') }}:</label>
             <input v-model="info.companyName" type="text" id="companyName" class="input" />
             <p v-if="errors.companyName" class="help-block">{{ errors.companyName }}</p>
           </div>
           <div slot="footer" class="mdl-footer">
-            <button @click="createEmployee" class="modal-create-btn">Create</button>
+            <button @click="createEmployee" class="modal-create-btn">{{ $t('CreateTrl') }}</button>
           </div>
         </Modal>
         <Modal v-if="showEditModal" @close="closeModal">
-          <h3 slot="header">Employee Edit</h3>
+          <h3 slot="header">{{ $t('EditWindow') }}</h3>
           <div slot="body" class="create-div">
-            <label for="name" class="label">Name:</label>
+            <label for="name" class="label">{{ $t('NameTrl') }}:</label>
             <input v-model="info.name" type="text" id="name" class="input" />
             <p v-if="errors.name" class="help-block">{{ errors.name }}</p>
-            <label for="address" class="label">Address:</label>
+            <label for="address" class="label">{{ $t('AddressTrl') }}:</label>
             <input
               v-model="info.address"
               type="text"
@@ -44,22 +44,22 @@
               class="input"
             />
             <p v-if="errors.address" class="help-block">{{ errors.address }}</p>
-            <label for="companyName" class="label">Company name:</label>
+            <label for="companyName" class="label">{{ $t('CompanyNameTrl') }}:</label>
             <input v-model="info.companyName" type="text" id="companyName" class="input" />
             <p v-if="errors.companyName" class="help-block">{{ errors.companyName }}</p>
           </div>
           <div slot="footer" class="mdl-footer">
-            <button @click="editDataEmployee" class="modal-create-btn">Edit</button>
+            <button @click="editDataEmployee" class="modal-create-btn">{{ $t('EditTrl') }}</button>
           </div>
         </Modal>
         <div class="wrap-table employee">
-          <p class="table-name">Employees list</p>
+          <p class="table-name">{{ $t('EmployeesListTrl') }}</p>
           <div class="wrap-div">
             <div class="table-main">
               <div class="tr">
-                <span class="th">Name</span>
-                <span class="th">Address</span>
-                <span class="th">Company name</span>
+                <span class="th">{{ $t('NameTrl') }}</span>
+                <span class="th">{{ $t('AddressTrl') }}</span>
+                <span class="th">{{ $t('CompanyNameTrl') }}</span>
                 <span class="th"></span>
               </div>
               <div
@@ -75,8 +75,8 @@
                 >
                 <span class="td">{{ item.companyName }}</span>
                 <span class="td column-btn">
-                  <button class="edit-btn" @click="editEmployee(index)">Edit</button>
-                  <button class="delete-btn" @click="deleteEmployee(index)">Delete</button>
+                  <button class="edit-btn" @click="editEmployee(index)">{{ $t('EditTrl') }}</button>
+                  <button class="delete-btn" @click="deleteEmployee(index)">{{ $t('DeleteTrl') }}</button>
                 </span>
               </div>
             </div>

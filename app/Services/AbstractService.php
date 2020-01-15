@@ -3,7 +3,6 @@ namespace App\Services;
 class AbstractService implements AbstractInterface
 {
 	protected $repository;
-	
 
 	public function delete(int $id)
     {

@@ -8,6 +8,7 @@ use App\Repositories\User\UserRepository;
 use App\Repositories\Company\CompanyRepository;
 use App\Services\AbstractService;
 use Tymon\JWTAuth\Exceptions\JWTException;
+
 class UserService extends AbstractService implements UserServiceInterface
 {
     /**

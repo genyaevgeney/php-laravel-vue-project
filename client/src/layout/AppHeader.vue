@@ -1,18 +1,26 @@
 <template>
   <header class="header">
     <div class="left-col">
-      <router-link to="/">Home</router-link>
+      <router-link :to="'/' + $i18n.locale">{{ $t('HomeLink') }}</router-link>
     </div>
     <div class="middle-col">
       <span>{{pageName}}</span>
     </div>
     <div class="right-col">
-      <router-link v-if="!user" to="/login">Login</router-link>
-      <router-link v-if="!user" to="/register">Register</router-link>
+    <select v-model="$i18n.locale">
+      <option
+        v-for="(lang, i) in langs"
+        :key="`Lang${i}`"
+        :value="lang"
+        >{{ lang }}</option
+      >
+    </select>
+      <router-link v-if="!user" :to="'/' + $i18n.locale + '/login'">{{ $t('Login') }}</router-link>
+      <router-link v-if="!user" :to="'/' + $i18n.locale + '/register'">{{ $t('Register') }}</router-link>
       <span v-if="user">{{user.email}}</span>
-      <router-link v-if="user" to="/company/page=1">Companies</router-link>
-      <router-link v-if="user" to="/employee/page=1">Employees</router-link>
-      <span v-if="user" class="logout-btn" @click.prevent="logout" >Logout</span>
+      <router-link v-if="user" :to="'/' + $i18n.locale + '/company/page=1'">{{ $t('CompaniesLink') }}</router-link>
+      <router-link v-if="user" :to="'/' + $i18n.locale + '/employee/page=1'">{{ $t('EmployeesLink') }}</router-link>
+      <span v-if="user" class="logout-btn" @click.prevent="logout" >{{ $t('LogoutLink') }}</span>
     </div>
   </header>
 </template>
@@ -22,7 +30,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-
+    langs: ['ru', 'en']
     };
   },
   computed: {
@@ -50,7 +58,7 @@ export default {
             this.$store.dispatch('DROP_USER');
             this.$cookie.delete('token');
             this.$cookie.delete('rememberMe');
-        this.$router.push({path: '/'});
+            this.$router.push({path: `/${this.$i18n.locale}`});
             console.log(res)
           })
           .catch(err=>{

@@ -1,9 +1,11 @@
 <?php
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
+
 class Employee extends Model
 {
-    protected $fillable = [
-    'name', 'address', 'company_id', 'companyName'
-];
+	protected $fillable = [
+		'name', 'address', 'company_id', 'companyName'
+	];
 }

@@ -2,8 +2,7 @@
 namespace App\Services;
 interface AbstractInterface
 {
+	public function delete(int $id);
 
-		public function delete(int $id);
-
-			public function paginate();
+	public function paginate();
 }

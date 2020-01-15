@@ -2,22 +2,22 @@
   <div>
     <div class="main-block">
       <p class="page-name">
-        Dashboard
+        {{ $t('DashboardWord') }}
       </p>
       <div class="main-section">
         <button id="show-modal" @click="showModal = true" class="create-btn">
-          Create new company
+          {{ $t('CreateCompanyBtn') }}
         </button>
         <Modal v-if="showModal" @close="closeModal">
-          <h3 slot="header">Company</h3>
+          <h3 slot="header">{{ $t('CompanyTrl') }}</h3>
           <div slot="body" class="create-div">
-            <label for="name" class="label">Name:</label>
+            <label for="name" class="label">{{ $t('NameTrl') }}:</label>
             <input v-model="info.name" type="text" id="name" class="input" />
             <p v-if="errors.name" class="help-block">{{ errors.name }}</p>
-            <label for="logo" class="label">Logo:</label>
+            <label for="logo" class="label">{{ $t('LogoTrl') }}:</label>
             <input type="file" id="logo" class="input" />
             <p v-if="errors.logo" class="help-block">{{ errors.logo }}</p>
-            <label for="website" class="label">Website:</label>
+            <label for="website" class="label">{{ $t('WebsiteTrl') }}:</label>
             <input
               v-model="info.website"
               type="text"
@@ -25,26 +25,28 @@
               class="input"
             />
             <p v-if="errors.website" class="help-block">{{ errors.website }}</p>
-            <label for="email" class="label">Email:</label>
+            <label for="email" class="label">{{ $t('EmailTrl') }}:</label>
             <input v-model="info.email" type="text" id="email" class="input" />
             <p v-if="errors.email" class="help-block">{{ errors.email }}</p>
           </div>
           <div slot="footer" class="mdl-footer">
-            <button @click="createCompany" class="modal-create-btn">Create</button>
+            <button @click="createCompany" class="modal-create-btn">{{ $t('CreateTrl') }}</button>
           </div>
         </Modal>
         <Modal v-if="showEditModal" @close="closeModal">
-          <h3 slot="header">Company Edit</h3>
+          <h3 slot="header">{{ $t('EditWindow') }}</h3>
           <div slot="body" class="create-div">
-            <label for="name" class="label">Name:</label>
+            <label for="name" class="label">{{ $t('NameTrl') }}:</label>
             <input v-model="info.name" type="text" id="name" class="input" />
             <p v-if="errors.name" class="help-block">{{ errors.name }}</p>
-            <label for="logo" class="label">Logo:</label>
-            <img id="editImg" class="modal-logo" :src="pathImg + info.logo" alt="logo"
+            <label for="logo" class="label">{{ $t('LogoTrl') }}:</label>
+            <div class="image-wrap modal-logo">
+              <img id="editImg" class="image" :src="pathImg + info.logo" alt="logo"
                 />
+            </div>
             <input type="file" id="editLogo" class="input" />
             <p v-if="errors.logo" class="help-block">{{ errors.logo }}</p>
-            <label for="website" class="label">Website:</label>
+            <label for="website" class="label">{{ $t('WebsiteTrl') }}:</label>
             <input
               v-model="info.website"
               type="text"
@@ -52,23 +54,23 @@
               class="input"
             />
             <p v-if="errors.website" class="help-block">{{ errors.website }}</p>
-            <label for="email" class="label">Email:</label>
+            <label for="email" class="label">{{ $t('EmailTrl') }}:</label>
             <input v-model="info.email" type="text" id="email" class="input" />
             <p v-if="errors.email" class="help-block">{{ errors.email }}</p>
           </div>
           <div slot="footer" class="mdl-footer">
-            <button @click="editDataCompany" class="modal-create-btn">Edit</button>
+            <button @click="editDataCompany" class="modal-create-btn">{{ $t('EditTrl') }}</button>
           </div>
         </Modal>
         <div class="wrap-table">
-          <p class="table-name">Companies list</p>
+          <p class="table-name">{{ $t('CompaniesListTrl') }}</p>
           <div class="wrap-div">
             <div class="table-main">
               <div class="tr">
-                <span class="th">Name</span>
-                <span class="th">Logo</span>
-                <span class="th">Website</span>
-                <span class="th">Email</span>
+                <span class="th">{{ $t('NameTrl') }}</span>
+                <span class="th">{{ $t('LogoTrl') }}</span>
+                <span class="th">{{ $t('WebsiteTrl') }}</span>
+                <span class="th">{{ $t('EmailTrl') }}</span>
                 <span class="th"></span>
               </div>
               <div
@@ -78,8 +80,12 @@
               >
                 <span class="td">{{ item.name }}</span>
                 <span class="td"
-                  ><img :src="pathImg + item.logo" alt="logo"
-                /></span>
+                  >
+                  <div class="image-wrap">
+                    <img class="image" :src="pathImg + item.logo" alt="logo"
+                />
+                  </div>
+                </span>
                 <span class="td"
                   ><a :href="item.website" target="_blank">{{
                     item.name
@@ -87,8 +93,8 @@
                 >
                 <span class="td">{{ item.email }}</span>
                 <span class="td column-btn">
-                  <button class="edit-btn" @click="editCompany(index)">Edit</button>
-                  <button class="delete-btn" @click="deleteCompany(index)">Delete</button>
+                  <button class="edit-btn" @click="editCompany(index)">{{ $t('EditTrl') }}</button>
+                  <button class="delete-btn" @click="deleteCompany(index)">{{ $t('DeleteTrl') }}</button>
                 </span>
               </div>
             </div>
@@ -273,14 +279,13 @@ export default {
         });
     },
     editDataCompany() {
-      let logoFile = document.querySelector("#editLogo").files[0];
-      logoFile ? 1 : logoFile=document.querySelector("#editLogo").files
-      console.log(logoFile)
       for (let key in this.errors) {
         this.errors[key] = "";
       }
       let formData = new FormData();
-      formData.append("logo", logoFile);
+      let logoFile = document.querySelector("#editLogo").files[0];
+      console.log(logoFile)
+      if(logoFile) formData.append("logo", logoFile);
       formData.append("name", this.info.name);
       formData.append("email", this.info.email);
       formData.append("website", this.info.website);

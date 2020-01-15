@@ -3,40 +3,45 @@
 </template>
 
 <script>
-import axios from "axios";
-export default {
-  data() {
-    return {};
-  },
-  computed: {
-    user() {
-      return this.$store.state.user;
-    }
-  },
-  watch: {
-    $route: "chekAuth"
-  },
-  created() {
-    this.chekAuth();
-  },
-  methods: {
-    async chekAuth() {
-      if (this.$cookie.get("rememberMe")) {
-        axios
+  import axios from "axios";
+  export default {
+    data() {
+      return {};
+    },
+    computed: {
+      user() {
+        return this.$store.state.user;
+      }
+    },
+    watch: {
+      $route: "chekAuth"
+    },
+    created() {
+      this.chekAuth();
+    },
+    mounted() {
+      if (this.$route.path === "/") {
+        this.$router.push({path: `/en`});
+      }
+    },
+    methods: {
+      async chekAuth() {
+        if (this.$cookie.get("rememberMe")) {
+          axios
           .get("http://php-crm.com/api/auth/me",
-              {
-                headers: { Authorization: this.$cookie.get("token") }
-              })
+          {
+            headers: { Authorization: this.$cookie.get("token") }
+          })
           .then(response => {
             this.$store.dispatch("SET_USER", response.data);
           })
           .catch(error => {
             console.log(error)
           });
+        }
       }
     }
-  }
-};
+  };
 </script>
 
 <style lang="scss">

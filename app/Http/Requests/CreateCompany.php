@@ -24,10 +24,10 @@ class CreateCompany extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'unique:companies|required|max:255|min:3',
-            'email' => 'required|email|max:255',
-            'website' => 'required|url',
-            'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ];
+        'name' => 'unique:companies|required|max:255|min:3',
+        'email' => 'required|email|max:255',
+        'website' => 'required|url',
+        'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+      ];
     }
 }

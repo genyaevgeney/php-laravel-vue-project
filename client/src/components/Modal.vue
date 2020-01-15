@@ -24,7 +24,7 @@
 
           <div class="modal-close">
               <button class="modal-default-button" @click="$emit('close')">
-                Close
+                {{ $t('CloseTrl') }}
               </button>
           </div>
         </div>
@@ -47,4 +47,3 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/scss/components/_Modal.scss";
 </style>
-
