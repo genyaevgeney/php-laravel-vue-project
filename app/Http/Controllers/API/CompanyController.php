@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\CreateCompany;
 use App\Http\Controllers\Controller;
-use Illuminate\Validation\Rule;
+use App\Http\Requests\CreateCompany;
 use App\Services\Company\CompanyService;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CompanyController extends Controller
 {
@@ -40,29 +40,29 @@ class CompanyController extends Controller
         if ($request->logo) {
             $validated = $request->validate(
                 [
-          'name' => [
-            'min:3',
-            'max:255',
-            'required',
-            Rule::unique('companies')->ignore($id),
-          ],
-          'email' => 'required|email|max:255',
-          'website' => 'required|url',
-          'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ]
+                    'name' => [
+                        'min:3',
+                        'max:255',
+                        'required',
+                        Rule::unique('companies')->ignore($id),
+                    ],
+                    'email' => 'required|email|max:255',
+                    'website' => 'required|url',
+                    'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                ]
             );
         }
         $validated = $request->validate(
             [
-        'name' => [
-          'min:3',
-          'max:255',
-          'required',
-          Rule::unique('companies')->ignore($id),
-        ],
-        'email' => 'required|email|max:255',
-        'website' => 'required|url',
-      ]
+                'name' => [
+                    'min:3',
+                    'max:255',
+                    'required',
+                    Rule::unique('companies')->ignore($id),
+                ],
+                'email' => 'required|email|max:255',
+                'website' => 'required|url',
+            ]
         );
         $this->companyService->update($validated, $id, $request);
 
